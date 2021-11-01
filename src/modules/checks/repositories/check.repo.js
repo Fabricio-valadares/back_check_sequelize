@@ -12,6 +12,32 @@ class CheckRepo {
 
         return allCheck
     }
+
+    static async findOneCheck(num_input) {
+        const oneCheck = await CheckModel.findOne({
+            where: {
+                num_input: num_input
+            }
+        })
+
+        return oneCheck
+    }
+
+    static async deleteCheck(num_input) {
+        try {
+            await CheckModel.destroy({
+                where: {
+                    num_input: num_input
+                }
+            })
+
+            return true
+
+        } catch(error) {
+            return false
+        }
+        
+    }
 }
 
 module.exports = { CheckRepo }
